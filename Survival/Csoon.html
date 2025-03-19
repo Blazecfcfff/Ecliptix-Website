@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Moonix Studios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            animation: backgroundRotate 3s infinite alternate;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        @keyframes backgroundRotate {
+            0% {
+                background: linear-gradient(to right, #00861d, #00bf63);
+            }
+            100% {
+                background: linear-gradient(to right, #00bf63, #00861d);
+            }
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 50px 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .countdown {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .countdown span {
+            padding: 10px 20px;
+            background: #00bf63;
+            color: black;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            display: block;
+            text-align: center;
+        }
+
+        .social-buttons {
+            margin-top: 30px;
+        }
+
+        .social-buttons a {
+            display: inline-block;
+            background: #333333;
+            color: white;
+            padding: 15px 0;
+            width: 60%;
+            margin: 10px auto;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.5em;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.3s ease;
+            transform: scale(0.9);
+        }
+
+        .social-buttons a:hover {
+            background: #00bf63;
+            transform: scale(1.05);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ecliptix Survival Launching Soon!</h1>
+        <p>Stay tuned. We're working hard to bring you all something amazing & fun.</p>
+        
+        <div id="countdown" class="countdown">
+        </div>
+
+        <div class="social-buttons">
+            <a href="https://discord.com" target="_blank">Join our Ecliptix Server</a>
+        </div>
+    </div>
+
+    <script>
+        const launchDate = new Date("Apr 10, 2025 00:00:00").getTime();
+
+        // Function to update the countdown every second
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `
+                <span>${days}</span>Days
+                <span>${hours}</span>Hours
+                <span>${minutes}</span>Mins
+                <span>${seconds}</span>Secs
+            `;
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "The event has started!";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
